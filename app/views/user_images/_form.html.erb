@@ -1,0 +1,19 @@
+<%= form_for @user_image, html: {multipart: true} do |f| %>
+  <% if @user_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+        <% @user_image.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :stitch_pic %>
+  <%= f.file_field :stitch_pic %>
+  <%= f.submit %>
+<% end %>
