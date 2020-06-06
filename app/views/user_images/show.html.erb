@@ -10,9 +10,21 @@
   <%= @user_image.stitch_pic %>
 </p>
 
+<% if @user_image.stitch_pic.url %>
+  <p>
+    <%= image_tag @user_image.stitch_pic.thumb.url %>
+  </p>
+<% end %>
+
 <p>
-  <%= image_tag @user_image.stitch_pic.thumb.url %>
+  <strong>Stitchified!</strong>
 </p>
+
+<% if @user_image.stitched_file? %>
+  <p>
+    <%= svg @user_image.stitch_path %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_user_image_path(@user_image) %> |
 <%= link_to 'Back', user_images_path %>
