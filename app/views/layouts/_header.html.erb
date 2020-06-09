@@ -1,9 +1,12 @@
-<a href="/"><h1>Stitchifier</h1></a>
+<div class="header">
+  <a href="/"><h1>Stitchifier!</h1></a>
 
-<ol>
-  <li><a href="/user_images">Image Index</a></li>
-</ol>
+  <div class="link-box">
+    <%= link_to 'new image upload', new_user_image_path %>
+  </div>
 
-<div class="title-box">
-  <h2><%= @title %></h2>
+  <div class="title-box">
+    <h2><%= @title %></h2>
+  </div>
+
 </div>
