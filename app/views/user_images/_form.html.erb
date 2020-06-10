@@ -1,19 +1,81 @@
-<%= form_for @user_image, html: {multipart: true} do |f| %>
-  <% if @user_image.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_image.errors.count, "error") %> prohibited this image from being saved:</h2>
+<div class="form container">
 
-      <ul>
-        <% @user_image.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= form_for @user_image, html: {multipart: true} do |f| %>
+    <% if @user_image.errors.any? %>
+      <div class="row error-box">
+        <div class="alert alert-danger" role="alert">
+          <h2><%= pluralize(@user_image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+          <ul>
+            <% @user_image.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <%= f.label :name, 'File Name (required):', class: "col-6" %>
+      <%= f.text_field :name, class: "col-6" %>
+    </div>
+    <div class="row">
+      <%= f.label :stitch_pic, 'File to Stitch (required):', class: "col-6" %>
+      <%= f.file_field :stitch_pic, class: "col-6" %>
+    </div>
+    <div class="row">
+      <div class="alert alert-info">
+        <h5>Privacy Statement</h5>
+        Stitchifier is a small project ellen works on in her free time, and as a disabled queer woman, her resources are extremely limited. As such, while she will never sell your pictures, she has not committed extensive resources into the privacy and security of your images. Please do not upload anything sensitive.
+      </div>
+
+      <div class="col-6">
+        <%= f.check_box :acknowledged_privacy, class: "privacy-box" %>
+      </div>
+      <div class="col-6">
+        <%= f.label :acknowledged_privacy, 'I acknowledge the privacy statement above' %>
+      </div>
+
+
+    </div>
+
+    <div class="row">
+      <span class="col-sm-12 col-md-6">
+        <div class="container">
+          <div class="row">
+            <%= f.label :grid_width, "Width of grid", class: "col-8" %>
+          
+
+            <%= f.number_field :grid_width, min: 2, max: 100, class: "col-4" %>
+          </div>
+        </div>
+      </span>
+
+      <span class="col-sm-12 col-md-6">
+        <div class="container">
+          <div class="row">
+            <%= f.label :px_size, "Grid px size", class: "col-8" %>
+        
+
+            <%= f.number_field :px_size, min: 2, max: 15, class: "col-4" %>
+          </div>
+        </div>
+      </span>
+
+      <span class="col-sm-12 col-md-6">
+        <div class="container">
+          <div class="row">
+            <%= f.label :number_of_colors, "Number of colors", class: "col-8" %>
+        
+
+            <%= f.number_field :number_of_colors, min: 2, max: 20, class: "col-4" %>
+          </div>
+        </div>
+      </span>
+    </div>
+
+    <div class="row">
+      <%= f.submit class: "submit-button" %>
     </div>
   <% end %>
-
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :stitch_pic %>
-  <%= f.file_field :stitch_pic %>
-  <%= f.submit %>
-<% end %>
+</div>

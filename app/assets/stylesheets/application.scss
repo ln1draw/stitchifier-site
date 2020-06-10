@@ -14,6 +14,8 @@
 
 @import 'bootstrap';
 @import 'header';
+@import 'index';
+@import 'user_images';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -22,4 +24,11 @@ body {
 
 h1, h2, h3, h4, h5, .condensed-font {
   font-family: 'Roboto-Condensed', sans-serif;
+}
+
+table {
+  .row {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }

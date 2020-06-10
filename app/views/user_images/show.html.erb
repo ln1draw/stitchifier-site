@@ -1,30 +1,50 @@
-<p id="notice"><%= notice %></p>
+<div class="show">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user_image.name %>
-</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-6"><h5>Name:</h5></div>
+      <div class="col-6"><%= @user_image.name %></div>
+    </div>
+  </div>
 
-<p>
-  <strong>Stitch pic:</strong>
-  <%= @user_image.stitch_pic %>
-</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-6"><h5>Grid Width:</h5></div>
+      <div class="col-6"><%= @user_image.grid_width %></div>
+    </div>
+    <div class="row">
+      <div class="col-6"><h5>Size of "pixels":</h5></div>
+      <div class="col-6"><%= @user_image.px_size %></div>
+    </div>
+    <div class="row">
+      <div class="col-6"><h5>Number of colors:</h5></div>
+      <div class="col-6"><%= @user_image.number_of_colors %></div>
+    </div>
 
-<% if @user_image.stitch_pic.url %>
-  <p>
-    <%= image_tag @user_image.stitch_pic.thumb.url %>
-  </p>
-<% end %>
+    <% if @user_image.stitch_pic.url %>
+      <div class="container">
+        <div class="row">
+          <div class="col-6"><h5>Original image:</h5></div>
+          <div class="col-6">
+            <%= image_tag @user_image.stitch_pic.thumb.url %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 
-<p>
-  <strong>Stitchified!</strong>
-</p>
+    <% if @user_image.stitched_file? %>
+      <p>
+        <%= link_to "Restitch!", stitchify_path(@user_image.id) %> |
+        <%= link_to 'Edit', edit_user_image_path(@user_image) %> |
+        <%= link_to 'Back', user_images_path %>
+      </p>
+      <p>
+        <%= svg @user_image.stitch_path %>
+      </p>
+    <% elsif @user_image.stitch_pic.url %>
+      <%= link_to "Stitchify!", stitchify_path(@user_image.id) %>
+    <% end %>
 
-<% if @user_image.stitched_file? %>
-  <p>
-    <%= svg @user_image.stitch_path %>
-  </p>
-<% end %>
-
-<%= link_to 'Edit', edit_user_image_path(@user_image) %> |
-<%= link_to 'Back', user_images_path %>
+  </div>
+</div>

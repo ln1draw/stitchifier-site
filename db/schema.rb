@@ -10,13 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_183734) do
+ActiveRecord::Schema.define(version: 2020_06_09_232659) do
 
   create_table "user_images", force: :cascade do |t|
     t.string "name"
     t.string "stitch_pic"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "grid_width"
+    t.integer "px_size"
+    t.integer "number_of_colors"
+    t.integer "acknowledged_privacy"
   end
 
 end

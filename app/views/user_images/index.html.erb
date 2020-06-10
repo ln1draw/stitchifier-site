@@ -1,37 +1,37 @@
-<p id="notice"><%= notice %></p>
+<div class="index">
+  <p id="notice"><%= notice %></p>
 
-<h3>User Images</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Stitch pic</th>
-      <th>Thumbnail</th>
-      <th>Stitched?</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user_images.each do |user_image| %>
-      <tr>
-        <td><%= user_image.name %></td>
-        <td><%= link_to 'Show', user_image %></td>
-        <td>
-          <% if user_image.stitch_pic.url %>
-            <%= image_tag user_image.stitch_pic.thumb.url %>
-          <% end %>
-        </td>
-        <td>
-          <% if user_image.stitched_file? %>
-            <strong>yes!</strong>
-          <% else %>
-            no
-          <% end %>
-          </td>
-        <td><%= link_to 'Edit', edit_user_image_path(user_image) %></td>
-        <td><%= link_to 'Destroy', user_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <table class="container table table-striped table-bordered">
+    <thead>
+      <tr class="row">
+        <th class="col-3">Name</th>
+        <th class="col-3">Thumbnail</th>
+        <th class="col-3">Stitched?</th>
+        <th class="col-3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @user_images.each do |user_image| %>
+        <tr class="row font-weight-light">
+          <td class="col-3"><%= link_to user_image.name, user_image %></td>
+          <td class="col-3">
+            <% if user_image.stitch_pic.url %>
+              <%= image_tag user_image.stitch_pic.thumb.url %>
+            <% end %>
+          </td>
+          <td class="col-3">
+            <% if user_image.stitched_file? %>
+              <strong>yes!</strong>
+            <% else %>
+              no
+            <% end %>
+          </td>
+          <td class="col-3"><%= link_to 'Edit', edit_user_image_path(user_image) %>
+            /
+            <%= link_to 'Destroy', user_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </div>
+</div>

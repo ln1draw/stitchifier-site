@@ -1,5 +1,5 @@
 class UserImagesController < ApplicationController
-  before_action :set_user_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_image, only: [:show, :edit, :update, :destroy, :stitchify]
 
   # GET /user_images
   # GET /user_images.json
@@ -29,7 +29,7 @@ class UserImagesController < ApplicationController
   # POST /user_images.json
   def create
     @title = "Stitch Something!"
-    @user_image = UserImage.new(user_image_params)
+    @user_image = UserImage.new(sanitized_user_image_params)
 
     respond_to do |format|
       if @user_image.save
@@ -47,7 +47,7 @@ class UserImagesController < ApplicationController
   def update
     @title = "Edit your Stitch"
     respond_to do |format|
-      if @user_image.update(user_image_params)
+      if @user_image.update(sanitized_user_image_params)
         format.html { redirect_to @user_image, notice: 'User image was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_image }
       else
@@ -55,6 +55,11 @@ class UserImagesController < ApplicationController
         format.json { render json: @user_image.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def stitchify
+    @user_image.stitchify
+    redirect_to @user_image, notice: "Successfully stitchified!"
   end
 
   # DELETE /user_images/1
@@ -76,6 +81,18 @@ class UserImagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_image_params
-      params.require(:user_image).permit(:name, :stitch_pic)
+      params.require(:user_image).permit(
+        :acknowledged_privacy,
+        :grid_width,
+        :name,
+        :number_of_colors,
+        :px_size,
+        :stitch_pic)
+    end
+
+    def sanitized_user_image_params
+      params = user_image_params
+      params[:acknowledged_privacy] = params[:acknowledged_privacy] == '1' ? true : false
+      params 
     end
 end
