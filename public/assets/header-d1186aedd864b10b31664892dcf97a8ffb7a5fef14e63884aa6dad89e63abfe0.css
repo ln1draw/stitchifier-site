@@ -1,0 +1,16 @@
+/* line 2, app/assets/stylesheets/header.scss */
+.header h1 {
+  font-size: 50px;
+  text-align: center;
+}
+
+/* line 7, app/assets/stylesheets/header.scss */
+.header .link-box {
+  text-align: center;
+}
+
+/* line 11, app/assets/stylesheets/header.scss */
+.header .title-box {
+  text-align: center;
+  padding: 25px;
+}
